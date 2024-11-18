@@ -1,4 +1,4 @@
-use solana_program::msg;
+use solana_program_v1_17_22::msg;
 
 use crate::{
     errors::ErrorCode,

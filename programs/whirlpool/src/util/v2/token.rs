@@ -87,7 +87,7 @@ pub fn transfer_from_owner_to_vault_v2<'info>(
         )?;
     }
 
-    solana_program::program::invoke_signed(&instruction, &account_infos, &[])?;
+    solana_program_v1_17_22::program::invoke_signed(&instruction, &account_infos, &[])?;
 
     Ok(())
 }
@@ -169,7 +169,11 @@ pub fn transfer_from_vault_to_owner_v2<'info>(
         )?;
     }
 
-    solana_program::program::invoke_signed(&instruction, &account_infos, &[&whirlpool.seeds()])?;
+    solana_program_v1_17_22::program::invoke_signed(
+        &instruction,
+        &account_infos,
+        &[&whirlpool.seeds()],
+    )?;
 
     Ok(())
 }
@@ -432,7 +436,7 @@ mod fuzz_tests {
     use proptest::prelude::*;
 
     struct SyscallStubs {}
-    impl solana_program::program_stubs::SyscallStubs for SyscallStubs {
+    impl solana_program_v1_17_22::program_stubs::SyscallStubs for SyscallStubs {
         fn sol_get_clock_sysvar(&self, _var_addr: *mut u8) -> u64 {
             0
         }
@@ -487,7 +491,7 @@ mod fuzz_tests {
             transfer_fee_basis_point in 0..MAX_FEE_BASIS_POINTS
         ) {
             // stub Clock
-            solana_program::program_stubs::set_syscall_stubs(Box::new(SyscallStubs {}));
+            solana_program_v1_17_22::program_stubs::set_syscall_stubs(Box::new(SyscallStubs {}));
             assert_eq!(Clock::get().unwrap().epoch, 0);
 
             let mint_with_transfer_fee_config = MintWithTransferFeeConfigLayout {

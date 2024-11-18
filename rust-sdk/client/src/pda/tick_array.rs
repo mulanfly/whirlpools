@@ -1,6 +1,6 @@
 use crate::generated::programs::WHIRLPOOL_ID;
-use solana_program::program_error::ProgramError;
-use solana_program::pubkey::Pubkey;
+use solana_program_v1_17_22::program_error::ProgramError;
+use solana_program_v1_17_22::pubkey::Pubkey;
 
 pub fn get_tick_array_address(
     whirlpool: &Pubkey,

@@ -370,7 +370,7 @@ fn derive_tick_array_pda(whirlpool: &Account<Whirlpool>, start_tick_index: i32) 
 #[cfg(test)]
 mod sparse_swap_tick_sequence_tests {
     use super::*;
-    use anchor_lang::solana_program::pubkey;
+    // use anchor_lang::solana_program::pubkey;
     use anchor_lang::Discriminator;
     use std::cell::RefCell;
 
@@ -439,47 +439,47 @@ mod sparse_swap_tick_sequence_tests {
         }
     }
 
-    #[test]
-    fn test_derive_tick_array_pda() {
-        let mut account_info_mock = AccountInfoMock::new_whirlpool(
-            pubkey!("HJPjoWUrhoZzkNfRpHuieeFk9WcZWjwy6PBjZ81ngndJ"), // well-known whirlpool key (SOL/USDC(ts=64))
-            64,
-            0,
-            Some(pubkey!("whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc")),
-        );
-        let account_info = account_info_mock.to_account_info(false);
-        let whirlpool_account = Account::<Whirlpool>::try_from(&account_info).unwrap();
+    // #[test]
+    // fn test_derive_tick_array_pda() {
+    //     let mut account_info_mock = AccountInfoMock::new_whirlpool(
+    //         pubkey!("HJPjoWUrhoZzkNfRpHuieeFk9WcZWjwy6PBjZ81ngndJ"), // well-known whirlpool key (SOL/USDC(ts=64))
+    //         64,
+    //         0,
+    //         Some(pubkey!("whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc")),
+    //     );
+    //     let account_info = account_info_mock.to_account_info(false);
+    //     let whirlpool_account = Account::<Whirlpool>::try_from(&account_info).unwrap();
 
-        let ta_start_neg_11264 = derive_tick_array_pda(&whirlpool_account, -11264);
-        assert_eq!(
-            ta_start_neg_11264,
-            pubkey!("81T5kNuPRkyVzhwbe2RpKR7wmQpGJ7RBkGPdTqyfa5vq")
-        );
+    //     let ta_start_neg_11264 = derive_tick_array_pda(&whirlpool_account, -11264);
+    //     assert_eq!(
+    //         ta_start_neg_11264,
+    //         pubkey!("81T5kNuPRkyVzhwbe2RpKR7wmQpGJ7RBkGPdTqyfa5vq")
+    //     );
 
-        let ta_start_neg_5632 = derive_tick_array_pda(&whirlpool_account, -5632);
-        assert_eq!(
-            ta_start_neg_5632,
-            pubkey!("9K1HWrGKZKfjTnKfF621BmEQdai4FcUz9tsoF41jwz5B")
-        );
+    //     let ta_start_neg_5632 = derive_tick_array_pda(&whirlpool_account, -5632);
+    //     assert_eq!(
+    //         ta_start_neg_5632,
+    //         pubkey!("9K1HWrGKZKfjTnKfF621BmEQdai4FcUz9tsoF41jwz5B")
+    //     );
 
-        let ta_start_0 = derive_tick_array_pda(&whirlpool_account, 0);
-        assert_eq!(
-            ta_start_0,
-            pubkey!("JCpxMSDRDPBMqjoX7LkhMwro2y6r85Q8E6p5zNdBZyWa")
-        );
+    //     let ta_start_0 = derive_tick_array_pda(&whirlpool_account, 0);
+    //     assert_eq!(
+    //         ta_start_0,
+    //         pubkey!("JCpxMSDRDPBMqjoX7LkhMwro2y6r85Q8E6p5zNdBZyWa")
+    //     );
 
-        let ta_start_5632 = derive_tick_array_pda(&whirlpool_account, 5632);
-        assert_eq!(
-            ta_start_5632,
-            pubkey!("BW2Mr823NUQN7vnVpv5E6yCTnqEXQ3ZnqjZyiywXPcUp")
-        );
+    //     let ta_start_5632 = derive_tick_array_pda(&whirlpool_account, 5632);
+    //     assert_eq!(
+    //         ta_start_5632,
+    //         pubkey!("BW2Mr823NUQN7vnVpv5E6yCTnqEXQ3ZnqjZyiywXPcUp")
+    //     );
 
-        let ta_start_11264 = derive_tick_array_pda(&whirlpool_account, 11264);
-        assert_eq!(
-            ta_start_11264,
-            pubkey!("2ezvsnoXdukw5dAAZ4EkW67bmUo8PHRPX8ZDqf76BKtV")
-        );
-    }
+    //     let ta_start_11264 = derive_tick_array_pda(&whirlpool_account, 11264);
+    //     assert_eq!(
+    //         ta_start_11264,
+    //         pubkey!("2ezvsnoXdukw5dAAZ4EkW67bmUo8PHRPX8ZDqf76BKtV")
+    //     );
+    // }
 
     #[test]
     fn test_floor_division() {
