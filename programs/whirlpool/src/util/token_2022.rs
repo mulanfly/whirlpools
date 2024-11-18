@@ -8,8 +8,8 @@ use anchor_spl::token_2022::spl_token_2022::{
 };
 use anchor_spl::token_2022::Token2022;
 use anchor_spl::token_interface::{Mint, TokenAccount};
-use solana_program_v1_17_22::program::{invoke, invoke_signed};
-use solana_program_v1_17_22::system_instruction::{create_account, transfer};
+use solana_program::program::{invoke, invoke_signed};
+use solana_program::system_instruction::{create_account, transfer};
 
 use crate::constants::{
     WP_2022_METADATA_NAME_PREFIX, WP_2022_METADATA_SYMBOL, WP_2022_METADATA_URI_BASE,

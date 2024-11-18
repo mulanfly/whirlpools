@@ -7,7 +7,7 @@ use crate::util::{create_whirlpool_reward_infos, SwapTickSequence};
 use serde::Deserialize;
 use serde_json;
 use serde_with::{serde_as, DisplayFromStr};
-use solana_program_v1_17_22::msg;
+use solana_program::msg;
 use std::fs;
 
 #[serde_as]

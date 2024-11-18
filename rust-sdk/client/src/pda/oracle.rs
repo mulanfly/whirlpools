@@ -1,6 +1,6 @@
 use crate::generated::programs::WHIRLPOOL_ID;
-use solana_program_v1_17_22::program_error::ProgramError;
-use solana_program_v1_17_22::pubkey::Pubkey;
+use solana_program::program_error::ProgramError;
+use solana_program::pubkey::Pubkey;
 
 pub fn get_oracle_address(whirlpool: &Pubkey) -> Result<(Pubkey, u8), ProgramError> {
     let seeds = &[b"oracle", whirlpool.as_ref()];
