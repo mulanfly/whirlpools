@@ -73,16 +73,25 @@ pub fn transfer_from_owner_to_vault_v2<'info>(
             return Err(ErrorCode::NoExtraAccountsForTransferHook.into());
         }
 
-        spl_transfer_hook_interface::onchain::add_extra_accounts_for_execute_cpi(
+        // spl_transfer_hook_interface::onchain::add_extra_accounts_for_execute_cpi(
+        //     &mut instruction,
+        //     &mut account_infos,
+        //     &hook_program_id,
+        //     // owner to vault
+        //     token_owner_account.to_account_info(), // from (owner account)
+        //     token_mint.to_account_info(),          // mint
+        //     token_vault.to_account_info(),         // to (vault account)
+        //     authority.to_account_info(),           // authority (owner)
+        //     amount,
+        //     transfer_hook_accounts.as_ref().unwrap(),
+        // )?;
+
+        // TODO: check if this is correct
+        spl_transfer_hook_interface::onchain::add_cpi_accounts_for_execute(
             &mut instruction,
             &mut account_infos,
+            token_mint.to_account_info().key,
             &hook_program_id,
-            // owner to vault
-            token_owner_account.to_account_info(), // from (owner account)
-            token_mint.to_account_info(),          // mint
-            token_vault.to_account_info(),         // to (vault account)
-            authority.to_account_info(),           // authority (owner)
-            amount,
             transfer_hook_accounts.as_ref().unwrap(),
         )?;
     }
@@ -155,16 +164,25 @@ pub fn transfer_from_vault_to_owner_v2<'info>(
             return Err(ErrorCode::NoExtraAccountsForTransferHook.into());
         }
 
-        spl_transfer_hook_interface::onchain::add_extra_accounts_for_execute_cpi(
+        // spl_transfer_hook_interface::onchain::add_extra_accounts_for_execute_cpi(
+        //     &mut instruction,
+        //     &mut account_infos,
+        //     &hook_program_id,
+        //     // vault to owner
+        //     token_vault.to_account_info(), // from (vault account)
+        //     token_mint.to_account_info(),  // mint
+        //     token_owner_account.to_account_info(), // to (owner account)
+        //     whirlpool.to_account_info(),   // authority (pool)
+        //     amount,
+        //     transfer_hook_accounts.as_ref().unwrap(),
+        // )?;
+
+        // TODO: check if this is correct
+        spl_transfer_hook_interface::onchain::add_cpi_accounts_for_execute(
             &mut instruction,
             &mut account_infos,
+            token_mint.to_account_info().key,
             &hook_program_id,
-            // vault to owner
-            token_vault.to_account_info(), // from (vault account)
-            token_mint.to_account_info(),  // mint
-            token_owner_account.to_account_info(), // to (owner account)
-            whirlpool.to_account_info(),   // authority (pool)
-            amount,
             transfer_hook_accounts.as_ref().unwrap(),
         )?;
     }
